@@ -59,13 +59,14 @@ class PDFKit(object):
 
         args += list(chain.from_iterable(list(self.options.items())))
         args = [_f for _f in args if _f]
+	
+	if self.cover:
+            args.append('cover')
+            args.append(self.cover)
 
         if self.toc:
             args.append('toc')
             args += list(chain.from_iterable(list(self.toc.items())))
-        if self.cover:
-            args.append('cover')
-            args.append(self.cover)
 
         # If the source is a string then we will pipe it into wkhtmltopdf
         # If the source is file-like then we will read from it and pipe it in
